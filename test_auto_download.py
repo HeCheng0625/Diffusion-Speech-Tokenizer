@@ -60,7 +60,7 @@ def test_mgm_auto_download():
         # This should automatically download both models from Hugging Face
         pipeline = MGMInferencePipeline.from_pretrained(
             tadicodec_path="amphion/TaDiCodec",
-            mgm_path="amphion/TaDiCodec-TTS-MGM-0.6B",
+            mgm_path="amphion/TaDiCodec-TTS-MGM",
             device=device,
             auto_download=True,
         )

@@ -1,5 +1,9 @@
 import torch
 
+# ref parent directory
+import sys
+sys.path.append('../')
+
 from models.tts.llm_tts.inference_llm_tts import TTSInferencePipeline
 
 
@@ -9,16 +13,15 @@ if __name__ == "__main__":
 
     # Create pipeline
     pipeline = TTSInferencePipeline.from_pretrained(
-        tadicodec_path="./ckpt/TaDiCodec",
-        llm_path="./ckpt/TaDiCodec-TTS-AR-Qwen2.5-3B",
+        tadicodec_path="amphion/TaDiCodec",
+        llm_path="amphion/TaDiCodec-TTS-AR-Qwen2.5-3B",
         device=device,
     )
-
     # Inference on single sample
     audio = pipeline(
         text="But to those who know her well, it was a symbol of her unwavering determination and spirit.",
         prompt_text="In short, we embarked on a mission to make America great again, for all Americans.",
-        prompt_speech_path="./use_examples/test_audio/trump_0.wav",
+        prompt_speech_path="./test_audio/trump_0.wav",
     )
 
     # audio = pipeline(
@@ -30,4 +33,4 @@ if __name__ == "__main__":
     # Save audio
     import soundfile as sf
 
-    sf.write("./use_examples/test_audio/lm_tts_output.wav", audio, 24000)
+    sf.write("./lm_tts_output.wav", audio, 24000)

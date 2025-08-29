@@ -169,15 +169,122 @@ mgm_model = MGMInferencePipeline.from_pretrained(
 
 ### Installation
 
+#### Conda Linux
+
+Select one of the 2 pytorch lines depending on your hardware
+
 ```bash
 # Clone the repository
 git clone https://github.com/HeCheng0625/Diffusion-Speech-Tokenizer.git
 cd Diffusion-Speech-Tokenizer
 
 # Install dependencies
-# bash env.sh
 conda create -n tadicodec python=3.10
+conda activate tadicodec
+pip install setuptools wheel psutil packaging ninja numpy hf_xet
+
+# pytorch
+# CUDA
+pip install torch==2.8.0 torchaudio --index-strategy unsafe-best-match --extra-index-url https://download.pytorch.org/whl/cu128
+# OR CPU only
+pip install torch==2.8.0 torchaudio
+
+pip install flash_attn==2.7.4.post1
 pip install -r requirements.txt
+```
+
+#### Conda Windows
+
+This assumes you are using powershell
+Select one of the 2 pytorch lines depending on your hardware
+Select one of the 2 flash_attn sections on if you want to use a pre-build whl or to compile your own
+
+```powershell
+# Clone the repository
+git clone https://github.com/HeCheng0625/Diffusion-Speech-Tokenizer.git
+cd Diffusion-Speech-Tokenizer
+
+# Install dependencies
+conda create -n tadicodec python=3.10
+conda activate tadicodec
+pip install setuptools wheel psutil packaging ninja numpy hf_xet
+
+# pytorch
+# CUDA
+pip install torch==2.8.0 torchaudio --index-strategy unsafe-best-match --extra-index-url https://download.pytorch.org/whl/cu128
+# OR CPU only
+pip install torch==2.8.0 torchaudio
+
+# flash_attn
+# use a pre-built wheel
+pip install https://huggingface.co/kim512/flash_attn-2.7.4.post1/resolve/main/flash_attn-2.7.4.post1-cu128-torch2.8.0-cp310-cp310-win_amd64.whl
+# OR compile your own, change MAX_JOBS to match your CPU, ideally 4 to 8. If you have lots of RAM make this number smaller.
+$Env:MAX_JOBS="6"
+$Env:CUDA_PATH="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8"
+pip install -v flash-attn==2.7.4.post1 --no-build-isolation
+
+
+# install requirements
+pip install -r requirements.txt
+```
+
+#### UV Linux
+
+Select one of the 2 pytorch lines depending on your hardware
+
+```bash
+# Clone the repository
+git clone https://github.com/HeCheng0625/Diffusion-Speech-Tokenizer.git
+cd Diffusion-Speech-Tokenizer
+
+# Install python and dependencies
+uv python install 3.10
+uv venv --python 3.10
+uv pip install setuptools wheel psutil packaging ninja numpy hf_xet
+
+# pytorch
+# CUDA
+pip install torch==2.8.0 torchaudio --index-strategy unsafe-best-match --extra-index-url https://download.pytorch.org/whl/cu128
+# CPU only
+pip install torch==2.8.0 torchaudio
+
+pip install flash_attn==2.7.4.post1
+pip install -r requirements.txt
+```
+
+#### UV Windows
+
+This assumes you are using powershell
+Select one of the 2 pytorch lines depending on your hardware
+Select one of the 2 flash_attn sections on if you want to use a pre-build whl or to compile your own
+ 
+```powershell
+# Clone the repository
+git clone https://github.com/HeCheng0625/Diffusion-Speech-Tokenizer.git
+cd Diffusion-Speech-Tokenizer
+
+# Install python and dependencies
+uv python install 3.10
+uv venv --python 3.10
+uv pip install setuptools wheel psutil packaging ninja numpy hf_xet
+
+# pytorch
+# CUDA
+uv pip install torch==2.8.0 torchaudio --index-strategy unsafe-best-match --extra-index-url https://download.pytorch.org/whl/cu128
+# OR CPU only
+uv pip install torch==2.8.0 torchaudio
+
+# flash_attn
+# use a pre-built wheel
+uv pip install https://huggingface.co/kim512/flash_attn-2.7.4.post1/resolve/main/flash_attn-2.7.4.post1-cu128-torch2.8.0-cp310-cp310-win_amd64.whl
+# OR compile your own, change MAX_JOBS to match your CPU, ideally 4 to 8. If you have lots of RAM make this number smaller.
+$Env:MAX_JOBS="6"
+$Env:CUDA_PATH="C:\Program Files\NVIDIA GPU Computing Toolkit\CUDA\v12.8"
+uv pip install -v flash-attn==2.7.4.post1 --no-build-isolation
+
+
+# install requirements
+uv pip install -r requirements.txt
 ```
 
 ### 🔄 Auto-Download from Hugging Face
@@ -205,6 +312,27 @@ pipeline = TTSInferencePipeline.from_pretrained(
 
 **Please refer to the [use_examples](./use_examples) folder for more detailed usage examples.**
 
+
+```bash
+cd Diffusion-Speech-Tokenizer
+
+# conda linux and windows
+conda activate tadicodec
+# UV linux
+./venv/Scripts/activate.sh
+# UV powershell
+.\.venv\Scripts\activate.ps1
+
+# download models
+python test_auto_download.py
+
+cd use_examples
+python test_auto_download.py
+python test_llm_tts.py
+python test_mgm_tts.py
+python test_rec.py
+
+```
 
 #### Speech Tokenization and Reconstruction
 

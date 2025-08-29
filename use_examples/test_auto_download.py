@@ -6,6 +6,11 @@ This example demonstrates how to automatically download models from Hugging Face
 
 import torch
 import soundfile as sf
+
+# ref parent directory
+import sys
+sys.path.append('../')
+
 from models.tts.tadicodec.inference_tadicodec import TaDiCodecPipline
 from models.tts.llm_tts.inference_llm_tts import TTSInferencePipeline
 
@@ -64,7 +69,7 @@ def main():
         )
 
         # Save the reconstructed audio
-        output_path = "./test_audio/auto_download_test_rec.wav"
+        output_path = "./auto_download_test_rec.wav"
         sf.write(output_path, rec_audio, 24000)
         print(f"✅ Speech reconstruction completed! Saved to: {output_path}")
 
@@ -82,7 +87,7 @@ def main():
         )
 
         # Save the generated audio
-        output_path = "./test_audio/auto_download_test_tts.wav"
+        output_path = "./auto_download_test_tts.wav"
         sf.write(output_path, audio, 24000)
         print(f"✅ TTS generation completed! Saved to: {output_path}")
 
