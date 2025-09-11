@@ -1,0 +1,85 @@
+{
+    "model_type": "TasCodec",
+    "dataset": ["emilia"],
+    "preprocess": {
+        "hop_size": 480,
+        "sample_rate": 24000,
+        "n_fft": 1920,
+        "num_mels": 128,
+        "win_size": 1920,
+        "fmin": 0,
+        "fmax": 12000,
+        "mel_var": 8.14,
+        "mel_mean": -4.92,
+        // feature
+        "use_text": true,
+        "use_mel_feat": true,
+        // cache
+        "mnt_path": "[Please fill out your emilia data root path]",
+        "cache_folder": "[Please fill out your emilia cache folder path]",
+        "use_json_path_cache": false
+    },
+    "model": {
+        "tadicodec": {
+            "mel_dim": 128,
+            "in_dim": 128,
+            "hidden_size": 1024,
+            "encoder_num_layers": 8,
+            "decoder_num_layers": 16,
+            "num_heads": 16,
+            "cond_drop_p": 0.2,
+            "context_drop_p": 0.2,
+            "down_sample_factor": 8,
+            "vq_emb_dim": 14,   // 2**14 = 16384
+            "use_text_cond": true,
+            "text_vocab_size": 32100,
+            "cond_dim": 1024,
+            "cond_scale_factor": 1,
+            "sigma": 1e-5,
+            "time_scheduler": "linear",
+            "vq_type": "bsq"
+        },
+        "vocos": {
+            "input_channels": 128,
+            "dim": 1024,
+            "intermediate_dim": 4096,
+            "num_layers": 30,
+            "n_fft": 1920,
+            "hop_size": 480,
+            "padding": "same"
+        }
+    },
+    "log_dir": "[Please fill out your log folder path]",
+    "train": {
+        "max_epoch": 0,
+        "use_dynamic_batchsize": true,
+        "max_tokens": 10000,
+        "max_sentences": 40,
+        "lr_warmup_steps": 32000,
+        "lr_scheduler": "inverse_sqrt",
+        "num_train_steps": 800000,
+        "adam": {
+            "lr": 7.5e-5
+        },
+        "ddp": false,
+        "random_seed": 114,
+        "batch_size": 10,
+        "epochs": 5000,
+        "max_steps": 1000000,
+        "total_training_steps": 800000,
+        "save_summary_steps": 500,
+        "save_checkpoints_steps": 1000,
+        "valid_interval": 2000,
+        "keep_checkpoint_max": 100,
+        "gradient_accumulation_step": 1,
+        "tracker": ["tensorboard"],
+        "save_checkpoint_stride": [1],
+        "keep_last": [10],
+        "run_eval": [true],
+        "dataloader": {
+          "num_worker": 8,
+          "pin_memory": true
+        },
+        "use_emilia_dataset": true
+    }
+}
