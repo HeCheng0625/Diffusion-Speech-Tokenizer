@@ -12,7 +12,7 @@
 <!-- *A series of works on diffusion-based speech tokenizers* -->
 
 <!-- TODO: replace the paper link to the arXiv link -->
-📄 **Paper**: [TaDiCodec: Text-aware Diffusion Speech Tokenizer for Speech Language Modeling](https://arxiv.org/abs/2508.16790)
+📄 **Paper**: [TaDiCodec: Text-aware Diffusion Speech Tokenizer for Speech Language Modeling [NeurIPS 2025]](https://arxiv.org/abs/2508.16790)
 
 [![GitHub Stars](https://img.shields.io/github/stars/HeCheng0625/Diffusion-Speech-Tokenizer?style=social)](https://github.com/HeCheng0625/Diffusion-Speech-Tokenizer)
 [![arXiv](https://img.shields.io/badge/arXiv-2508.16790-b31b1b.svg)](https://arxiv.org/abs/2508.16790)
@@ -55,7 +55,7 @@ We introduce the **T**ext-**a**ware **Di**ffusion Transformer Speech **Codec** (
 
 </div>
 
-<!-- - **🎉 [2025-08-11]** TaDiCodec is accepted by NeurIPS 2025! -->
+- **🎉 [2025-09-19]** TaDiCodec is accepted by NeurIPS 2025!
 - **🚀 [2025-08-25]** We release the offical implementation of TaDiCodec and the TTS models based on TaDiCodec.
 - **🔥 [2025-08-25]** TaDiCodec paper released! Check out our [arXiv preprint](https://arxiv.org/abs/2508.16790)
 - **📦 [2025-08-25]** Added auto-download functionality from Hugging Face for all models!
