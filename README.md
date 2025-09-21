@@ -1,4 +1,16 @@
 <div align="center">
+  
+# ⚠️ This repository has moved
+
+This project has been migrated to a new repository: [AmphionTeam/Diffusion-Speech-Tokenizer](https://github.com/AmphionTeam/Diffusion-Speech-Tokenizer).
+
+Please update your bookmarks and use the new repo for the latest updates.
+
+</div>
+
+---
+
+<div align="center">
 
 # 🎵 Diffusion-Speech-Tokenizer 🚀
 
