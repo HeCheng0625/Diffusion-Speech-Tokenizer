@@ -564,14 +564,13 @@ class TaDiCodec(nn.Module):
             if cfg > 0 and self.use_text_cond:
                 # Get unconditional flow prediction by dropping conditions
                 uncond_flow_pred = self.decoder(
-                    x=xt_input,
-                    x_mask=xt_mask,
+                    x=xt,
+                    x_mask=x_mask,
                     text_embedding=None,  # Drop text
                     text_mask=None,
-                    cond=torch.zeros_like(cond_emb),  # Drop code
+                    cond=torch.zeros_like(cond_emb[:, : xt.shape[1], :]),  # Drop code
                     diffusion_step=t,
                 )
-                uncond_flow_pred = uncond_flow_pred[:, prompt_len:, :]
 
                 # Combine conditional and unconditional predictions
                 flow_pred_cfg = uncond_flow_pred + cfg * (flow_pred - uncond_flow_pred)
